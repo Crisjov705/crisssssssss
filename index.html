@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Primer Mes, Mi Amor</title>
+    <style>
+        body {
+            background-color: #ffd1dc; /* Fondo rosa pastel */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: white;
+            overflow-x: hidden; /* Evita el desbordamiento horizontal */
+        }
+
+        /* Contenedor para reducir el espaciado */
+        .container {
+            padding: 20px 20px; /* Se reduce el padding superior */
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #ff4081;
+        }
+
+        /* Cambiamos el color del texto de la dedicatoria para un mejor contraste */
+        .dedication {
+            font-size: 1.5rem;
+            color: #333; /* Texto oscuro para mejor contraste */
+        }
+
+        /* Estilo para el nombre Ledis */
+        .ledis-name {
+            font-size: 3rem;
+            color: #ff4081;
+            font-weight: bold;
+            margin-top: 10px; /* Menos espacio arriba */
+        }
+
+        /* Estilo para la fecha */
+        .date {
+            font-size: 1.5rem;
+            color: #ff6f61;
+            margin-top: 5px; /* Menos espacio entre el nombre y la fecha */
+        }
+
+        /* Reducimos más el espacio entre la fecha y el texto "Feliz Primer Mes" */
+        .container h1 {
+            margin-top: 10px;
+        }
+
+        /* Corazones flotantes */
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff4081;
+            opacity: 0.8;
+            border-radius: 50%;
+            transform: rotate(45deg);
+            animation: floatUp 10s infinite ease-in-out;
+        }
+
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff4081;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -15px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: -15px;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(45deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        /* Variaciones en los tamaños y velocidades de los corazones */
+        .heart:nth-child(2) { width: 20px; height: 20px; animation-duration: 12s; animation-delay: 2s; }
+        .heart:nth-child(3) { width: 40px; height: 40px; animation-duration: 8s; animation-delay: 1s; }
+        .heart:nth-child(4) { width: 25px; height: 25px; animation-duration: 14s; animation-delay: 3s; }
+        .heart:nth-child(5) { width: 35px; height: 35px; animation-duration: 10s; animation-delay: 0s; }
+        .heart:nth-child(6) { width: 50px; height: 50px; animation-duration: 11s; animation-delay: 4s; }
+        .heart:nth-child(7) { width: 30px; height: 30px; animation-duration: 9s; animation-delay: 1s; }
+        .heart:nth-child(8) { width: 45px; height: 45px; animation-duration: 13s; animation-delay: 2s; }
+        .heart:nth-child(9) { width: 35px; height: 35px; animation-duration: 15s; animation-delay: 1s; }
+        .heart:nth-child(10) { width: 25px; height: 25px; animation-duration: 16s; animation-delay: 3s; }
+
+        /* Sobre estilizado */
+        .envelope {
+            width: 300px;
+            height: 150px;
+            background-color: #ff6f61;
+            margin: 20px auto; /* Reducir espacio entre el sobre y el texto */
+            position: relative;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s, opacity 0.5s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .envelope:hover {
+            transform: scale(1.05);
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 25px solid #ff6f61;
+        }
+
+        .envelope::after {
+            content: '';
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 25px solid #ff6f61;
+        }
+
+        .button {
+            background-color: #8e24aa;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #6a1b9a;
+        }
+
+        /* Ocultar la carta */
+        #carta {
+            display: none;
+            font-size: 1.2rem;
+            color: #444;
+            background-color: #fff;
+            border: 2px solid #ff4081;
+            padding: 20px;
+            width: 60%;
+            margin: 20px auto; /* Reducir espacio entre la carta y los elementos */
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            transform-origin: top;
+            transform: scaleY(0);
+            opacity: 0;
+            transition: transform 0.5s ease-in-out, opacity 0.5s;
+        }
+
+        /* Animación de despliegue de carta */
+        #carta.show {
+            display: block;
+            transform: scaleY(1);
+            opacity: 1;
+        }
+
+        /* Cambiamos el color del pie de página */
+        .footer {
+            font-size: 1rem;
+            color: #333; /* Color oscuro para buen contraste */
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Corazones flotantes -->
+    <div class="heart" style="left: 5%;"></div>
+    <div class="heart" style="left: 10%;"></div>
+    <div class="heart" style="left: 15%;"></div>
+    <div class="heart" style="left: 20%;"></div>
+    <div class="heart" style="left: 25%;"></div>
+    <div class="heart" style="left: 30%;"></div>
+    <div class="heart" style="left: 35%;"></div>
+    <div class="heart" style="left: 40%;"></div>
+    <div class="heart" style="left: 45%;"></div>
+    <div class="heart" style="left: 50%;"></div>
+    <div class="heart" style="left: 55%;"></div>
+    <div class="heart" style="left: 60%;"></div>
+    <div class="heart" style="left: 65%;"></div>
+    <div class="heart" style="left: 70%;"></div>
+    <div class="heart" style="left: 75%;"></div>
+    <div class="heart" style="left: 80%;"></div>
+    <div class="heart" style="left: 85%;"></div>
+    <div class="heart" style="left: 90%;"></div>
+    <div class="heart" style="left: 95%;"></div>
+
+    <!-- Nombre de Ledis y la fecha -->
+    <div class="ledis-name">Ledis De Jovel</div>
+    <div class="date">20 de octubre del 2024</div>
+
+    <div class="container">
+        <h1>Feliz Primer Mes, mi Amor</h1>
+        <p class="dedication">
+            Mi amor, este mes a tu lado ha sido el comienzo de algo increíble. Estoy muy emocionado por todo lo que nos espera. ¡Te amo!
+        </p>
+
+        <!-- El sobre interactivo -->
+        <div class="envelope" id="envelope"></div>
+
+        <!-- Botón para abrir la carta -->
+        <button class="button" onclick="openLetter()">Abrir Carta</button>
+
+        <!-- La carta oculta -->
+        <div id="carta">
+            <p>
+                  Mi Amor,
+                <br><br>
+                Hoy celebramos nuestro primer mes juntos, y no puedo evitar sentirme completamente afortunado por haberte encontrado. Este tiempo a tu lado ha sido como un sueño hecho realidad, lleno de momentos que atesoro profundamente. No es solo lo que hemos vivido, sino también lo que siento cada día por ti.
+                <br><br>
+                Desde que entraste en mi vida, todo ha cambiado para mejor. Me has mostrado lo que significa amar y ser amado de verdad. Cada sonrisa tuya, cada palabra y cada gesto me recuerdan lo especial que eres. Eres más de lo que alguna vez pude imaginar, y no hay un solo día en que no me sienta agradecido por tenerte a mi lado.
+                <br><br>
+                Este mes ha sido solo el comienzo de algo que sé que será increíble. Juntos hemos reído, compartido sueños y creado recuerdos que llevaré siempre en mi corazón. Tu compañía me llena de paz, tu risa ilumina mis días y tu amor es el refugio en el que siempre quiero estar.
+                <br><br>
+                Cuando pienso en lo que el futuro nos tiene preparado, me siento lleno de emoción. Me imagino todos los momentos que aún nos esperan, las nuevas aventuras que viviremos y la vida que construiremos juntos. Porque contigo, todo es más hermoso, más emocionante y más significativo.
+                <br><br>
+                Quiero que sepas que te amo con todo mi corazón, más de lo que las palabras pueden expresar. Gracias por este primer mes inolvidable, y por todo lo que viene. No puedo esperar para seguir amándote y hacerte feliz cada día.
+                <br><br>
+                  Con todo mi corazón,
+                <br><br>
+                Cristian 
+            </p>
+        </div>
+
+        <div class="footer">
+            &copy; 2024 Hecho con amor por Cristian Jovel
+        </div>
+    </div>
+
+    <script>
+        // Función para abrir la carta
+        function openLetter() {
+            const carta = document.getElementById('carta');
+            const envelope = document.getElementById('envelope');
+
+            // Desvanecer el sobre y mostrar la carta
+            envelope.style.opacity = '0';
+            setTimeout(() => {
+                envelope.style.display = 'none';  // Ocultar el sobre
+                carta.classList.add('show');      // Mostrar la carta
+            }, 500);  // Tiempo de la transición
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
